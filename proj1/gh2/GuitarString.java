@@ -14,13 +14,13 @@ public class GuitarString {
     private Deque<Double> buffer;
 
     /* Create a guitar string of the given FREQUENCY.  */
-    public GuitarString(double FREQUENCY) {
+    public GuitarString(double frequency) {
         // Create a buffer with capacity = SR / FREQUENCY. You'll need to
         //       cast the result of this division operation into an int. For
         //       better accuracy, use the Math.round() function before casting.
         //       Your should initially fill your buffer array with zeros.
         buffer = new ArrayDeque<>();
-        int length = (int) Math.round(SR / FREQUENCY);
+        int length = (int) Math.round(SR / frequency);
         for (int i = 0; i < length; i += 1) {
             buffer.addFirst(0.0);
         }

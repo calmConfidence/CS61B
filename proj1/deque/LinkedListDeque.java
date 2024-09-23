@@ -7,7 +7,7 @@ import java.util.Iterator;
  */
 public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
     /** construct the node of the list.*/
-    public class Node {
+    private class Node {
         private T item;
         private Node next;
         private Node prev;
@@ -116,8 +116,10 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
         return p.item;
     }
 
-    public T getRecursiveHelper(Node p, int index, int i) {
-        if (i == index) return p.item;
+    private T getRecursiveHelper(Node p, int index, int i) {
+        if (i == index) {
+            return p.item;
+        }
         return getRecursiveHelper(p.next, index, i + 1);
     }
 
@@ -139,7 +141,7 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
     private class LLDIterator implements Iterator<T> {
         private Node p;
 
-        public LLDIterator() {
+        LLDIterator() {
             p = getSentinel();
         }
 
@@ -158,7 +160,7 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
     }
 
     /** Help the Iterator get the sentinel. */
-    public Node getSentinel() {
+    private Node getSentinel() {
         return this.sentinel;
     }
 
@@ -168,21 +170,19 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
      *  in the same order.*/
     @Override
     public boolean equals(Object o) {
-        if (! (o instanceof LinkedListDeque)) {
+        if (!(o instanceof LinkedListDeque)) {
             return false;
         }
         LinkedListDeque<?> other = (LinkedListDeque<?>) o;
         if (other.size() != size()) {
             return false;
         }
-        Node p1 = sentinel.next;
-        LinkedListDeque<?>.Node p2 = other.sentinel.next;
-        while (p1 != sentinel && p2 != other.sentinel) {
-            if (p1.item != p2.item) {
+        Iterator<T> i1 = (Iterator<T>) this.iterator();
+        Iterator<T> i2 = (Iterator<T>) other.iterator();
+        while (i1.hasNext()) {
+            if (!i1.next().equals(i2.next())) {
                 return false;
             }
-            p1 = p1.next;
-            p2 = p2.next;
         }
         return true;
     }

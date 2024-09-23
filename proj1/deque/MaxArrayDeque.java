@@ -19,7 +19,7 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        T tempMax = getFirst();
+        T tempMax = get(0);
         for (T item : this) {
             if (comparator.compare(tempMax, item) < 0) {
                 tempMax = item;
@@ -34,22 +34,12 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        T tempMax = getFirst();
+        T tempMax = get(0);
         for (T item : this) {
             if (c.compare(tempMax, item) < 0) {
                 tempMax = item;
             }
         }
         return tempMax;
-    }
-
-    /** override the equals method. */
-    @Override
-    public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
-        MaxArrayDeque other = (MaxArrayDeque) o;
-        return other.max().equals(max());
     }
 }

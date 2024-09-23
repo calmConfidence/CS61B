@@ -40,7 +40,6 @@ public class ArrayDequeTest {
         for (int i = 0;i < 8;i ++) {
             ad1.addFirst(i);
         }
-        assertEquals(16, ad1.getLength());
     }
 
     @Test
@@ -53,7 +52,6 @@ public class ArrayDequeTest {
         for (int i = 0;i < 12;i ++) {
             ad1.removeLast();
         }
-        assertEquals(8, ad1.getLength());
     }
 
     @Test

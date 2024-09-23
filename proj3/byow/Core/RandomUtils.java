@@ -287,7 +287,7 @@ public class RandomUtils {
     /**
      * Returns a random integer from the specified discrete distribution.
      *
-     * @param frequencies the frequency of occurrence of each integer
+     * @param frequencies the FREQUENCY of occurrence of each integer
      * @return a random integer from a discrete distribution:
      * i with probability proportional to frequencies[i]
      * @throws IllegalArgumentException if frequencies is null
@@ -314,7 +314,7 @@ public class RandomUtils {
             throw new IllegalArgumentException("sum of frequencies overflows an int");
         }
 
-        // pick index i with probabilitity proportional to frequency
+        // pick index i with probabilitity proportional to FREQUENCY
         double r = uniform(random, (int) sum);
         sum = 0;
         for (int i = 0; i < frequencies.length; i++) {

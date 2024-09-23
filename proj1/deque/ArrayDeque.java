@@ -9,7 +9,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     private int rar;
     private int length; // The length of the array.
 
-    public int mod(int x) {
+    private int mod(int x) {
         return (x + length) % length;
     }
 
@@ -23,7 +23,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
 
 
     /** Resize method. */
-    public void resize(int capacity) {
+    private void resize(int capacity) {
         T[] a = (T[]) new Object[capacity];
         int j = 0;
         for (int i = front; i != rar; i = mod(i + 1)) {
@@ -36,7 +36,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     }
 
     /** Check if the array has been full. */
-    public boolean isFull() {
+    private boolean isFull() {
         return mod(rar + 1) == front;
     }
 
@@ -120,22 +120,15 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         }
         return items[mod(front + index)];
     }
-    /* get the first item. */
-    public T getFirst() {
-        if (isEmpty()) {
-            return null;
-        }
-        return items[front];
-    }
 
     /* get the front index. */
-    public int getFront() {
+    private int getFront() {
         return this.front;
     }
-    public int getRar() {
+    private int getRar() {
         return this.rar;
     }
-    public int getLength() {
+    private int getLength() {
         return this.length;
     }
 
@@ -152,7 +145,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         private int length;
         private int rar;
 
-        public LLDIterator() {
+        LLDIterator() {
             index = getFront();
             length = getLength();
             rar = getRar();
