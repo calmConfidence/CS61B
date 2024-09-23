@@ -98,6 +98,11 @@ public class ArrayDeque<T> implements Iterable<T> {
         if (index >= size()) return null;
         return items[mod(front + index)];
     }
+    /* get the first item. */
+    public T getFirst() {
+        if (isEmpty()) return null;
+        return items[front];
+    }
 
     /* get the front index. */
     public int getFront() {
@@ -150,7 +155,7 @@ public class ArrayDeque<T> implements Iterable<T> {
         Iterator<T> i1 = (Iterator<T>) this.iterator();
         Iterator<T> i2 = (Iterator<T>) other.iterator();
         while (i1.hasNext()) {
-            if (i1.next() != i2.next()) return false;
+            if (!i1.next().equals(i2.next())) return false;
         }
         return true;
     }
