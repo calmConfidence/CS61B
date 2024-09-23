@@ -30,7 +30,8 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
         this.size = 0;
     }
 
-    /** Adds an item of type T to the front of the deque. You can assume that item is never null. */
+    /** Adds an item of type T to the front of the deque.
+     *  You can assume that item is never null. */
     @Override
     public void addFirst(T item) {
         Node n = new Node(item, sentinel.next, sentinel);
@@ -39,7 +40,8 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
         size += 1;
     }
 
-    /** Adds an item of type T to the back of the deque. You can assume that item is never null. */
+    /** Adds an item of type T to the back of the deque.
+     * You can assume that item is never null. */
     @Override
     public void addLast(T item) {
         Node n = new Node(item, sentinel, sentinel.prev);
@@ -66,10 +68,13 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
         System.out.println();
     }
 
-    /** Removes and returns the item at the front of the deque. If no such item exists, returns null. */
+    /** Removes and returns the item at the front of the deque.
+     *  If no such item exists, returns null. */
     @Override
     public T removeFirst() {
-        if (isEmpty()) return null;
+        if (isEmpty()) {
+            return null;
+        }
         T value = sentinel.next.item;
         sentinel.next.next.prev = sentinel;
         sentinel.next = sentinel.next.next;
@@ -77,10 +82,13 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
         return value;
     }
 
-    /** Removes and returns the item at the back of the deque. If no such item exists, returns null. */
+    /** Removes and returns the item at the back of the deque.
+     *  If no such item exists, returns null. */
     @Override
     public T removeLast() {
-        if (isEmpty()) return null;
+        if (isEmpty()) {
+            return null;
+        }
         T value = sentinel.prev.item;
         sentinel.prev.prev.next = sentinel;
         sentinel.prev = sentinel.prev.prev;
@@ -88,15 +96,20 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
         return value;
     }
 
-    /** Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth.
+    /** Gets the item at the given index, where 0 is the front,
+     * 1 is the next item, and so forth.
      * If no such item exists, returns null. Must not alter the deque! */
     @Override
     public T get(int index) {
-        if (index >= size) return null;
+        if (index >= size) {
+            return null;
+        }
         Node p = sentinel.next;
         int i = 0;
         while (i <= index) {
-            if (i == index) break;
+            if (i == index) {
+                break;
+            }
             i += 1;
             p = p.next;
         }
@@ -110,7 +123,9 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
 
     /** Same as get, but uses recursion. */
     public T getRecursive(int index) {
-        if (index >= size) return null;
+        if (index >= size) {
+            return null;
+        }
         return getRecursiveHelper(sentinel.next, index, 0);
     }
 
@@ -129,7 +144,9 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
         }
 
         public boolean hasNext() {
-            if (p.next == getSentinel()) return false;
+            if (p.next == getSentinel()) {
+                return false;
+            }
             return true;
         }
 
@@ -147,15 +164,23 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
 
     /** Returns whether or not the parameter o is equal to the Deque.
      *  o is considered equal if it is a Deque and if it contains the same
-     *  contents (as goverened by the generic T’s equals method) in the same order.*/
+     *  contents (as goverened by the generic T’s equals method)
+     *  in the same order.*/
+    @Override
     public boolean equals(Object o) {
-        if (! (o instanceof LinkedListDeque)) return false;
+        if (! (o instanceof LinkedListDeque)) {
+            return false;
+        }
         LinkedListDeque<?> other = (LinkedListDeque<?>) o;
-        if (other.size() != size()) return false;
+        if (other.size() != size()) {
+            return false;
+        }
         Node p1 = sentinel.next;
         LinkedListDeque<?>.Node p2 = other.sentinel.next;
         while (p1 != sentinel && p2 != other.sentinel) {
-            if (p1.item != p2.item) return false;
+            if (p1.item != p2.item) {
+                return false;
+            }
             p1 = p1.next;
             p2 = p2.next;
         }

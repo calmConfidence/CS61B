@@ -2,13 +2,15 @@ package deque;
 
 import org.junit.Test;
 
+import java.util.Comparator;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class MaxArrayDequeTest {
     @Test
     public void testMaxNoArgumentAllEquals() {
-        MaxArrayDeque<Integer> mad = new MaxArrayDeque<>(new IntegerComparator());
+        MaxArrayDeque<Integer> mad = new MaxArrayDeque<Integer>(new IntegerComparator());
         mad.addFirst(12);
         mad.addFirst(12);
         mad.addFirst(12);
@@ -43,8 +45,8 @@ public class MaxArrayDequeTest {
     private class StringComparatorUpdate implements Comparator<String> {
 
         @Override
-        public boolean compare(String a, String b) {
-            return a.length() - b.length() >= 0;
+        public int compare(String a, String b) {
+            return a.length() - b.length();
         }
     }
 
