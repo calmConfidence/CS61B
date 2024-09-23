@@ -2,7 +2,7 @@ package deque;
 
 import java.util.Iterator;
 
-public class ArrayDeque<T> implements Iterable<T> {
+public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
 
     private T[] items;
     private int front;
@@ -40,6 +40,7 @@ public class ArrayDeque<T> implements Iterable<T> {
     }
 
     /** Adds an item of type T to the front of the deque. You can assume that item is never null. */
+    @Override
     public void addFirst(T item) {
         if (isFull()) resize(length * 2);
         front = mod(front - 1);
@@ -47,24 +48,22 @@ public class ArrayDeque<T> implements Iterable<T> {
     }
 
     /** Adds an item of type T to the back of the deque. You can assume that item is never null. */
+    @Override
     public void addLast(T item) {
         if (isFull()) resize(length * 2);
         items[rar] = item;
         rar = mod(rar + 1);
     }
 
-    /** Returns true if deque is empty, false otherwise. */
-    public boolean isEmpty() {
-        return size() == 0;
-    }
-
     /** Returns the number of items in the deque. */
+    @Override
     public int size() {
         return mod(rar - front);
     }
 
     /** Prints the items in the deque from first to last, separated by a space.
      * Once all the items have been printed, print out a new line. */
+    @Override
     public void printDeque() {
         for (int i = front; i != rar; i = mod(i + 1)) {
             System.out.print(items[i].toString() + ' ');
@@ -73,6 +72,7 @@ public class ArrayDeque<T> implements Iterable<T> {
     }
 
     /** Removes and returns the item at the front of the deque. If no such item exists, returns null. */
+    @Override
     public T removeFirst() {
         if (isEmpty()) return null;
         if (length > 8 && (size() - 1) < length * 0.25) resize(length / 2);
@@ -83,6 +83,7 @@ public class ArrayDeque<T> implements Iterable<T> {
     }
 
     /** Removes and returns the item at the back of the deque. If no such item exists, returns null. */
+    @Override
     public T removeLast() {
         if (isEmpty()) return null;
         if (length > 8 && (size() - 1) < length * 0.25) resize(length / 2);
@@ -94,6 +95,7 @@ public class ArrayDeque<T> implements Iterable<T> {
 
     /** Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth.
      * If no such item exists, returns null. Must not alter the deque! */
+    @Override
     public T get(int index) {
         if (index >= size()) return null;
         return items[mod(front + index)];
